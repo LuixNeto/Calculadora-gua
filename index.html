@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Ingestão de Água</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        caption {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Calculadora de Água</h1>
+        <p>Descubra quanto de água você deve beber por dia!</p>
+
+        <input type="text" id="nome" placeholder="Digite seu nome" required>
+        <input type="number" id="peso" placeholder="Digite seu peso (kg)" required>
+
+        <button onclick="calcularAgua()">Calcular</button>
+
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <table>
+        <caption>5 Dicas para Melhorar Sua Hidratação</caption>
+        <thead>
+            <tr>
+                <th>Dica</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Estabeleça metas diárias claras</td>
+                <td>Defina uma quantidade específica de água para beber ao longo do dia, como 2 litros ou 8 copos, e divida essa meta em porções menores para evitar sobrecarga.</td>
+            </tr>
+            <tr>
+                <td>Use lembretes e alarmes</td>
+                <td>Defina alarmes no celular ou use aplicativos de hidratação para te lembrar de beber água a cada 1 ou 2 horas.</td>
+            </tr>
+            <tr>
+                <td>Tenha uma garrafinha sempre à mão</td>
+                <td>Carregar uma garrafinha de água facilita o consumo, tornando mais fácil beber água ao longo do dia, especialmente quando estiver fora de casa.</td>
+            </tr>
+            <tr>
+                <td>Torne a água mais interessante</td>
+                <td>Experimente adicionar frutas, ervas ou pepino à sua água para torná-la mais saborosa sem adicionar calorias extras.</td>
+            </tr>
+            <tr>
+                <td>Associe a hidratação a outras atividades</td>
+                <td>Combine o ato de beber água com outras rotinas diárias, como ao acordar ou durante as refeições, para integrar a hidratação ao seu dia.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function calcularAgua() {
+            var nome = document.getElementById("nome").value;
+            var peso = parseFloat(document.getElementById("peso").value);
+
+            if (nome === "" || isNaN(peso) || peso <= 0) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            var quantidadeAgua = peso * 35 / 1000;  // Convertendo de ml para litros
+            document.getElementById("resultado").innerHTML = nome + ", você deve ingerir " + quantidadeAgua.toFixed(2) + " litros de água diariamente.";
+        }
+    </script>
+
+</body>
+</html>
