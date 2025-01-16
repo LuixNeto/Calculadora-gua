@@ -21,6 +21,43 @@
             height: 100vh;
             flex-direction: column;
             padding: 20px;
+            margin: 0;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .tab-button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin: 0 10px;
+            border-radius: 5px;
+            width: 100%; /* Ajusta para telas pequenas */
+        }
+
+        .tab-button:hover {
+            background-color: #0056b3;
+        }
+
+        .tab-button.active {
+            background-color: #0056b3;
+        }
+
+        .content-wrapper {
+            width: 100%;
+            max-width: 500px; /* Máxima largura para centralização */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .container {
@@ -29,7 +66,6 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 400px; /* Limita a largura máxima */
             text-align: center;
             margin-bottom: 20px;
         }
@@ -74,6 +110,7 @@
             width: 100%;
             margin: 20px 0;
             border-collapse: collapse;
+            display: none; /* Inicialmente oculta */
         }
 
         table, th, td {
@@ -101,8 +138,15 @@
             color: #007bff;
         }
 
-        /* Media query para telas menores */
+        /* Ajustes para telas menores */
         @media screen and (max-width: 600px) {
+            .tab-button {
+                font-size: 1em;
+                padding: 10px;
+                width: 50%; /* Ocupa metade da tela para cada aba */
+                margin: 5px;
+            }
+
             .container {
                 padding: 15px;
             }
@@ -118,55 +162,71 @@
 
             table {
                 font-size: 0.9em;
+                margin-top: 15px;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .tab-button {
+                font-size: 0.9em;
+                padding: 8px;
+                width: 100%; /* Fica uma abaixo da outra */
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Calculadora de Água</h1>
-        <p>Descubra quanto de água você deve beber por dia!</p>
+    <div class="content-wrapper">
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('calculadora')">Calculadora</button>
+            <button class="tab-button" onclick="showTab('dicas')">Dicas</button>
+        </div>
 
-        <input type="text" id="nome" placeholder="Digite seu nome" required>
-        <input type="number" id="peso" placeholder="Digite seu peso (kg)" required>
+        <div class="container" id="calculadora">
+            <h1>Calculadora de Água</h1>
+            <p>Descubra quanto de água você deve beber por dia!</p>
 
-        <button onclick="calcularAgua()">Calcular</button>
+            <input type="text" id="nome" placeholder="Digite seu nome" required>
+            <input type="number" id="peso" placeholder="Digite seu peso (kg)" required>
 
-        <div class="result" id="resultado"></div>
+            <button onclick="calcularAgua()">Calcular</button>
+
+            <div class="result" id="resultado"></div>
+        </div>
+
+        <table id="dicas">
+            <caption>5 Dicas para Melhorar Sua Hidratação</caption>
+            <thead>
+                <tr>
+                    <th>Dica</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Estabeleça metas diárias claras</td>
+                    <td>Defina uma quantidade específica de água para beber ao longo do dia, como 2 litros ou 8 copos, e divida essa meta em porções menores para evitar sobrecarga.</td>
+                </tr>
+                <tr>
+                    <td>Use lembretes e alarmes</td>
+                    <td>Defina alarmes no celular ou use aplicativos de hidratação para te lembrar de beber água a cada 1 ou 2 horas.</td>
+                </tr>
+                <tr>
+                    <td>Tenha uma garrafinha sempre à mão</td>
+                    <td>Carregar uma garrafinha de água facilita o consumo, tornando mais fácil beber água ao longo do dia, especialmente quando estiver fora de casa.</td>
+                </tr>
+                <tr>
+                    <td>Torne a água mais interessante</td>
+                    <td>Experimente adicionar frutas, ervas ou pepino à sua água para torná-la mais saborosa sem adicionar calorias extras.</td>
+                </tr>
+                <tr>
+                    <td>Associe a hidratação a outras atividades</td>
+                    <td>Combine o ato de beber água com outras rotinas diárias, como ao acordar ou durante as refeições, para integrar a hidratação ao seu dia.</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
-    <table>
-        <caption>5 Dicas para Melhorar Sua Hidratação</caption>
-        <thead>
-            <tr>
-                <th>Dica</th>
-                <th>Descrição</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Estabeleça metas diárias claras</td>
-                <td>Defina uma quantidade específica de água para beber ao longo do dia, como 2 litros ou 8 copos, e divida essa meta em porções menores para evitar sobrecarga.</td>
-            </tr>
-            <tr>
-                <td>Use lembretes e alarmes</td>
-                <td>Defina alarmes no celular ou use aplicativos de hidratação para te lembrar de beber água a cada 1 ou 2 horas.</td>
-            </tr>
-            <tr>
-                <td>Tenha uma garrafinha sempre à mão</td>
-                <td>Carregar uma garrafinha de água facilita o consumo, tornando mais fácil beber água ao longo do dia, especialmente quando estiver fora de casa.</td>
-            </tr>
-            <tr>
-                <td>Torne a água mais interessante</td>
-                <td>Experimente adicionar frutas, ervas ou pepino à sua água para torná-la mais saborosa sem adicionar calorias extras.</td>
-            </tr>
-            <tr>
-                <td>Associe a hidratação a outras atividades</td>
-                <td>Combine o ato de beber água com outras rotinas diárias, como ao acordar ou durante as refeições, para integrar a hidratação ao seu dia.</td>
-            </tr>
-        </tbody>
-    </table>
 
     <script>
         function calcularAgua() {
@@ -181,6 +241,32 @@
             var quantidadeAgua = peso * 35 / 1000;  // Convertendo de ml para litros
             document.getElementById("resultado").innerHTML = nome + ", você deve ingerir " + quantidadeAgua.toFixed(2) + " litros de água diariamente.";
         }
+
+        function showTab(tab) {
+            var calculadoraTab = document.getElementById('calculadora');
+            var dicasTab = document.getElementById('dicas');
+            var tabButtons = document.querySelectorAll('.tab-button');
+
+            if (tab === 'calculadora') {
+                calculadoraTab.style.display = 'block';
+                dicasTab.style.display = 'none';
+            } else {
+                calculadoraTab.style.display = 'none';
+                dicasTab.style.display = 'block';
+            }
+
+            // Ativar botão da aba correta
+            tabButtons.forEach(function(button) {
+                if (button.innerText.toLowerCase() === tab) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+
+        // Inicializa a aba de calculadora aberta
+        showTab('calculadora');
     </script>
 
 </body>
