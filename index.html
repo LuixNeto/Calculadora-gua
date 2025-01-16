@@ -5,16 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Ingestão de Água</title>
     <style>
+        /* Resetando margens e padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f8ff;
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             flex-direction: column;
+            padding: 20px;
         }
 
         .container {
@@ -22,31 +28,35 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 100%;
+            max-width: 400px; /* Limita a largura máxima */
             text-align: center;
             margin-bottom: 20px;
         }
 
         h1 {
             color: #007bff;
+            font-size: 1.5em;
         }
 
         input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
             border-radius: 5px;
             border: 1px solid #ccc;
+            font-size: 1em;
         }
 
         button {
             background-color: #007bff;
             color: white;
-            padding: 10px;
+            padding: 12px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
+            font-size: 1.1em;
         }
 
         button:hover {
@@ -55,14 +65,14 @@
 
         .result {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 1.2em;
             font-weight: bold;
             color: #007bff;
         }
 
         table {
-            width: 80%;
-            margin: 20px auto;
+            width: 100%;
+            margin: 20px 0;
             border-collapse: collapse;
         }
 
@@ -73,6 +83,7 @@
         th, td {
             padding: 10px;
             text-align: left;
+            font-size: 1em;
         }
 
         th {
@@ -85,9 +96,29 @@
         }
 
         caption {
-            font-size: 20px;
+            font-size: 1.2em;
             margin-bottom: 10px;
             color: #007bff;
+        }
+
+        /* Media query para telas menores */
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.3em;
+            }
+
+            input, button {
+                padding: 10px;
+                font-size: 1em;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
